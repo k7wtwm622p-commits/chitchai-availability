@@ -1,8 +1,9 @@
 {
   "schemaVersion": 1,
   "visitorType": "repeat",
-  "status": "unconfigured",
+  "status": "error",
   "refreshIntervalMinutes": 10,
+  "generatedAt": "2026-10-29T14:23:25.079Z",
   "staff": [
     {
       "id": "any",
@@ -21,5 +22,102 @@
       "name": "鈴木"
     }
   ],
-  "records": []
+  "records": [
+    {
+      "staffId": "any",
+      "duration": 65,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:17:54.185Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "any",
+      "duration": 95,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:18:25.898Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "any",
+      "duration": 125,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:18:56.464Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "mishima",
+      "duration": 65,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:19:26.045Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "mishima",
+      "duration": 95,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:19:55.878Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "mishima",
+      "duration": 125,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:20:25.675Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "miyahara",
+      "duration": 65,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:20:55.425Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "miyahara",
+      "duration": 95,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:21:25.924Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "miyahara",
+      "duration": 125,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:21:56.371Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "suzuki",
+      "duration": 65,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:22:26.835Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "suzuki",
+      "duration": 95,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:22:56.650Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    },
+    {
+      "staffId": "suzuki",
+      "duration": 125,
+      "status": "error",
+      "checkedAt": "2026-10-29T14:23:25.054Z",
+      "slots": [],
+      "errorCode": "SOURCE_READ_FAILED"
+    }
+  ]
 }
