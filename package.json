@@ -1,0 +1,8 @@
+{
+  "name": "chitchai-availability-collector",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {"test": "node --test test/*.test.mjs", "collect": "node collector/collect.mjs"},
+  "dependencies": {"playwright": "1.64.1"}
+}

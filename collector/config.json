@@ -1,0 +1,18 @@
+{
+  "entryUrl": "https://1cs.jp/gcs/user/salons/st0spa/reservation.do#/salons/st0spa/reservations",
+  "visitorType": "repeat",
+  "timezone": "Asia/Tokyo",
+  "refreshIntervalMinutes": 10,
+  "maxSearchDays": 8,
+  "staff": [
+    {"id":"any","name":"指名なし"},
+    {"id":"mishima","name":"三嶋"},
+    {"id":"miyahara","name":"宮原"},
+    {"id":"suzuki","name":"鈴木"}
+  ],
+  "courses": [
+    {"duration":65,"requiredMinutes":80,"menuId":"menu_6586647"},
+    {"duration":95,"requiredMinutes":110,"menuId":"menu_6586648"},
+    {"duration":125,"requiredMinutes":140,"menuId":"menu_6586649"}
+  ]
+}

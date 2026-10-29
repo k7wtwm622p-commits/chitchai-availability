@@ -1,0 +1,49 @@
+name: Update salon availability (free public runner only)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Japan 11:02–22:52, every ten minutes. Start times are not guaranteed by GitHub.
+    - cron: '2,12,22,32,42,52 2-13 * * *'
+  push:
+    branches: [main]
+    paths: ['collector/**', 'test/**', 'package.json', 'package-lock.json', '.github/workflows/availability.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: salon-availability
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    # Fail closed: never run in a private/internal repository where minutes could be billed.
+    if: github.event.repository.visibility == 'public'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+      - name: Verify result handling
+        run: npm test
+      - name: Install standard Chromium
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Read public reservation screen
+        run: npm run collect
+      - name: Save public availability result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/availability.json
+          if ! git diff --staged --quiet; then
+            git commit -m 'Update public appointment availability'
+            git push origin HEAD:main
+          fi
+      - name: Report collection errors after saving safe result
+        run: |
+          node --input-type=module -e "import{readFileSync}from'node:fs';const d=JSON.parse(readFileSync('data/availability.json'));if(d.status!=='ok')process.exit(1)"

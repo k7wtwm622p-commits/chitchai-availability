@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "visitorType": "repeat",
+  "status": "unconfigured",
+  "refreshIntervalMinutes": 10,
+  "staff": [
+    {
+      "id": "any",
+      "name": "指名なし"
+    },
+    {
+      "id": "mishima",
+      "name": "三嶋"
+    },
+    {
+      "id": "miyahara",
+      "name": "宮原"
+    },
+    {
+      "id": "suzuki",
+      "name": "鈴木"
+    }
+  ],
+  "records": []
+}
