@@ -1,6 +1,5 @@
 import {chromium} from 'playwright';
 import {readFile,mkdir,writeFile,rename} from 'node:fs/promises';
-import {fileURLToPath} from 'node:url';
 import {tokyoDate,nextDate,readDay,errorSnapshot,validateSnapshot} from './model.mjs';
 
 const root=new URL('../',import.meta.url);
@@ -39,6 +38,19 @@ async function selectStaffAndCourse(page, staff, course){
   if(label!=='タイ古式マッサージ'+course.duration+'分'||required!=='所要時間'+course.requiredMinutes+'分')throw new Error('MENU_CHANGED');
   await menu.locator('.menu-base').click();
   await page.getByRole('button',{name:'次へ',exact:true}).filter({visible:true}).first().click();
+  // Coming Soon may show an optional-services-only stage before the date calendar.
+  // Wait for either the calendar or the selected basic menu to leave the visible DOM.
+  await page.waitForFunction(({id})=>{
+    const calendar=document.querySelector('.clndr-grid');
+    const basic=document.getElementById(id);
+    return !!calendar?.getClientRects().length || !basic?.getClientRects().length;
+  },{id:course.menuId},{timeout:25000});
+  if(!await page.locator('.clndr-grid:visible').count()){
+    await guard(page);
+    const optionNotice=page.getByText('オプションメニューをご希望の場合は下記から選択してください。',{exact:true});
+    if(!await optionNotice.isVisible())throw new Error('UNEXPECTED_MENU_STAGE');
+    await page.getByRole('button',{name:'次へ',exact:true}).filter({visible:true}).first().click();
+  }
   await page.locator('.clndr-grid:visible').waitFor({timeout:25000});
   // Verify the selected menu and staff summary before accepting a result.
   const summary=await page.locator('body').innerText();
@@ -95,6 +107,7 @@ try{
         const code=/^[A-Z_]+$/.test(error.message)?error.message:'SOURCE_READ_FAILED';
         Object.assign(record,{status:'error',checkedAt:new Date().toISOString(),slots:[],errorCode:code});
         console.log(staff.id,course.duration,code);
+        console.warn(String(error.message).slice(0,700));
         if(fatalCodes.test(code))stop=true;
       }finally{await context.close();}
     }
