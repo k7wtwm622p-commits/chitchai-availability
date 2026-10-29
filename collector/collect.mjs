@@ -31,8 +31,14 @@ async function selectStaffAndCourse(page, staff, course){
     if(await card.count()!==1)throw new Error('STAFF_NOT_FOUND');
     await card.getByRole('button').first().click();
   }
+  await page.locator('.menu-plate:visible .menu-name').first().waitFor({timeout:25000});
   const menu=page.locator('#'+course.menuId+':visible');
-  await menu.waitFor({timeout:25000});
+  if(!await menu.count()){
+    const names=(await page.locator('.menu-plate:visible .menu-name').allTextContents()).map(s=>s.replace(/\s+/g,''));
+    if(!names.some(s=>/^タイ古式マッサージ\d+分$/.test(s)))throw new Error('MENU_NOT_LOADED');
+    if(names.includes('タイ古式マッサージ'+course.duration+'分'))throw new Error('MENU_CHANGED');
+    throw new Error('COURSE_UNSUPPORTED');
+  }
   const label=(await menu.locator('.menu-name').innerText()).replace(/\s+/g,'');
   const required=(await menu.locator('.time').innerText()).replace(/\s+/g,'');
   if(label!=='タイ古式マッサージ'+course.duration+'分'||required!=='所要時間'+course.requiredMinutes+'分')throw new Error('MENU_CHANGED');
@@ -105,7 +111,7 @@ try{
         console.log(staff.id,course.duration,record.status);
       }catch(error){
         const code=/^[A-Z_]+$/.test(error.message)?error.message:'SOURCE_READ_FAILED';
-        Object.assign(record,{status:'error',checkedAt:new Date().toISOString(),slots:[],errorCode:code});
+        Object.assign(record,{status:code==='COURSE_UNSUPPORTED'?'unsupported':'error',checkedAt:new Date().toISOString(),slots:[],...(code==='COURSE_UNSUPPORTED'?{}:{errorCode:code})});
         console.log(staff.id,course.duration,code);
         console.warn(String(error.message).slice(0,700));
         if(fatalCodes.test(code))stop=true;

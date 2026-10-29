@@ -18,6 +18,7 @@ test('unloaded/ambiguous results and expired starts never become bookable',()=>{
 test('snapshot rejects visitor/selection mixups and incomplete empty ranges',()=>{
  const config={staff:[{id:'any',name:'指名なし'},{id:'mishima',name:'三嶋'}],courses:[{duration:65}]};
  const good=errorSnapshot(config,new Date(now));assert.equal(validateSnapshot(good,config),good);
+ const unsupported=structuredClone(good);unsupported.records[1].status='unsupported';assert.equal(validateSnapshot(unsupported,config),unsupported);
  assert.throws(()=>validateSnapshot({...good,visitorType:'new'},config));
  const duplicate=structuredClone(good);duplicate.records[1]=duplicate.records[0];assert.throws(()=>validateSnapshot(duplicate,config));
  const bad=structuredClone(good);bad.records[0].status='none';assert.throws(()=>validateSnapshot(bad,config));

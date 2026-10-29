@@ -29,7 +29,7 @@ export function validateSnapshot(data,config){
     const key=record.staffId+':'+record.duration;
     if(keys.has(key)||!config.staff.some(s=>s.id===record.staffId)||!config.courses.some(c=>c.duration===record.duration))throw new Error('INVALID_SELECTION');
     keys.add(key);
-    if(!['available','none','error'].includes(record.status)||!Number.isFinite(Date.parse(record.checkedAt)))throw new Error('INVALID_RECORD');
+    if(!['available','none','unsupported','error'].includes(record.status)||!Number.isFinite(Date.parse(record.checkedAt)))throw new Error('INVALID_RECORD');
     if(record.status==='available'&&(!Array.isArray(record.slots)||!record.slots.length||record.slots.some(s=>!s.endsWith('+09:00')||!Number.isFinite(Date.parse(s)))))throw new Error('INVALID_SLOT');
     if(record.status==='none'&&!/^\d{4}-\d{2}-\d{2}$/.test(record.searchThrough||''))throw new Error('INVALID_RANGE');
   }
