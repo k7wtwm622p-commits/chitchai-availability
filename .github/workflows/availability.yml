@@ -3,8 +3,9 @@ name: Update salon availability (free public runner only)
 on:
   workflow_dispatch:
   schedule:
-    # Every ten minutes, day and night (UTC schedule). Start times are not guaranteed by GitHub.
-    - cron: '2,12,22,32,42,52 * * * *'
+    # Every ten minutes, day and night; avoid the busy start of each UTC hour.
+    # GitHub may still delay or drop scheduled runs.
+    - cron: '7,17,27,37,47,57 * * * *'
   push:
     branches: [main]
     paths: ['collector/**', 'test/**', 'package.json', 'package-lock.json', '.github/workflows/availability.yml']
