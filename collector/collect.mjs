@@ -1,6 +1,6 @@
 import {chromium} from 'playwright';
 import {readFile,mkdir,writeFile,rename} from 'node:fs/promises';
-import {tokyoDate,nextDate,readDay,errorSnapshot,validateSnapshot} from './model.mjs';
+import {tokyoDate,nextDate,readDay,errorSnapshot,validateSnapshot,preserveLastKnown} from './model.mjs';
 
 const root=new URL('../',import.meta.url);
 const config=JSON.parse(await readFile(new URL('config.json',import.meta.url),'utf8'));
@@ -125,9 +125,10 @@ try{
   snapshot.generatedAt=new Date().toISOString();
   const good=snapshot.records.filter(r=>r.status!=='error').length;
   snapshot.status=good===snapshot.records.length?'ok':good?'partial':'error';
-  validateSnapshot(snapshot,config);
   const directory=new URL('data/',root);await mkdir(directory,{recursive:true});
   const target=new URL('availability.json',directory);
+  try{preserveLastKnown(snapshot,JSON.parse(await readFile(target,'utf8')),config);}catch{}
+  validateSnapshot(snapshot,config);
   await writeFile(new URL('availability.tmp',directory),JSON.stringify(snapshot,null,2)+'\n');
   await rename(new URL('availability.tmp',directory),target);
   console.log('Published local result:',snapshot.status,good+'/'+snapshot.records.length);

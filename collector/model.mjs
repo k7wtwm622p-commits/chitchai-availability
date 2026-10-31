@@ -35,3 +35,10 @@ export function validateSnapshot(data,config){
   }
   return data;
 }
+
+export function preserveLastKnown(snapshot, previous, config) {
+  try { validateSnapshot(previous,config); } catch { return snapshot; }
+  const old=new Map(previous.records.filter(r=>['available','none','unsupported'].includes(r.status)).map(r=>[r.staffId+':'+r.duration,r]));
+  snapshot.records=snapshot.records.map(r=>r.status==='error'?old.get(r.staffId+':'+r.duration)||r:r);
+  return snapshot;
+}
