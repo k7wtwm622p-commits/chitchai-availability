@@ -3,7 +3,7 @@
   "visitorType": "repeat",
   "status": "ok",
   "refreshIntervalMinutes": 10,
-  "generatedAt": "2026-11-08T23:51:13.435Z",
+  "generatedAt": "2026-11-09T03:06:05.569Z",
   "staff": [
     {
       "id": "any",
@@ -27,7 +27,7 @@
       "staffId": "any",
       "duration": 65,
       "status": "available",
-      "checkedAt": "2026-11-08T23:49:48.805Z",
+      "checkedAt": "2026-11-09T03:04:33.824Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -70,7 +70,7 @@
       "staffId": "any",
       "duration": 95,
       "status": "available",
-      "checkedAt": "2026-11-08T23:49:58.114Z",
+      "checkedAt": "2026-11-09T03:04:42.544Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -110,7 +110,7 @@
       "staffId": "any",
       "duration": 125,
       "status": "available",
-      "checkedAt": "2026-11-08T23:50:06.403Z",
+      "checkedAt": "2026-11-09T03:04:50.659Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -147,7 +147,7 @@
       "staffId": "mishima",
       "duration": 65,
       "status": "available",
-      "checkedAt": "2026-11-08T23:50:14.499Z",
+      "checkedAt": "2026-11-09T03:04:58.709Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -190,7 +190,7 @@
       "staffId": "mishima",
       "duration": 95,
       "status": "available",
-      "checkedAt": "2026-11-08T23:50:22.180Z",
+      "checkedAt": "2026-11-09T03:05:05.926Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -230,7 +230,7 @@
       "staffId": "mishima",
       "duration": 125,
       "status": "available",
-      "checkedAt": "2026-11-08T23:50:28.595Z",
+      "checkedAt": "2026-11-09T03:05:14.655Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -267,7 +267,7 @@
       "staffId": "miyahara",
       "duration": 65,
       "status": "available",
-      "checkedAt": "2026-11-08T23:50:35.710Z",
+      "checkedAt": "2026-11-09T03:05:22.361Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -302,7 +302,7 @@
       "staffId": "miyahara",
       "duration": 95,
       "status": "available",
-      "checkedAt": "2026-11-08T23:50:43.144Z",
+      "checkedAt": "2026-11-09T03:05:30.272Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -334,7 +334,7 @@
       "staffId": "miyahara",
       "duration": 125,
       "status": "available",
-      "checkedAt": "2026-11-08T23:50:50.497Z",
+      "checkedAt": "2026-11-09T03:05:38.107Z",
       "slots": [
         "2026-11-10T13:00:00+09:00",
         "2026-11-10T13:10:00+09:00",
@@ -363,7 +363,7 @@
       "staffId": "suzuki",
       "duration": 65,
       "status": "none",
-      "checkedAt": "2026-11-08T23:50:57.906Z",
+      "checkedAt": "2026-11-09T03:05:46.683Z",
       "slots": [],
       "searchThrough": "2026-11-16"
     },
@@ -371,7 +371,7 @@
       "staffId": "suzuki",
       "duration": 95,
       "status": "none",
-      "checkedAt": "2026-11-08T23:51:07.325Z",
+      "checkedAt": "2026-11-09T03:05:57.713Z",
       "slots": [],
       "searchThrough": "2026-11-16"
     },
@@ -379,7 +379,7 @@
       "staffId": "suzuki",
       "duration": 125,
       "status": "unsupported",
-      "checkedAt": "2026-11-08T23:51:13.400Z",
+      "checkedAt": "2026-11-09T03:06:05.537Z",
       "slots": []
     }
   ]
